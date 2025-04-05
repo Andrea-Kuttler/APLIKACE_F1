@@ -1,0 +1,114 @@
+:root {
+    --primary-color: #FF1E00;
+    --secondary-color: white;
+    --background-color: #15151E;
+    --secondary-background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  @font-face {
+    font-family: 'Formula1-Bold';
+    src: url('./fonts/Formula1-Bold.otf') format('truetype');
+  }
+  
+  body {
+    font-family: 'Formula1-Bold', sans-serif;
+    color: black;
+    background-image: url('./img/f1.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+
+    @media (max-width: 768px) {
+      background-size: 100% 100%;
+  }
+}
+  
+  .container {
+    width: 95%;
+    margin: 10px auto;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: black;
+  
+    @media (min-width: 768px) {
+      width: 80%;
+      margin: 20px auto;
+      padding: 20px;
+    }
+  }
+  
+  h1 {
+    text-align: center;
+    color: var(--secondary-color);
+    font-size: 2em;
+    margin-bottom: 15px;
+  
+    @media (min-width: 768px) {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+  }
+  
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  
+    @media (min-width: 768px) {
+      flex-direction: row;
+      justify-content: center;
+      gap: 20px;
+    }
+  }
+  
+  button {
+    display: block;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  
+    &:hover {
+      background-color: var(--secondary-color);
+      color: var(--primary-color);
+    }
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    padding: 10px;
+    margin: auto;
+    border-bottom: 2px solid var(--secondary-color);
+    font-size: 1em;
+    text-align: center;
+    font-family: 'Formula1-Bold', sans-serif;
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    background-position: center;
+    max-width: 95%;
+  
+    @media (min-width: 768px) {
+      font-size: 1.2em;
+      max-width: 80%;
+    }
+  }
+  
+  #raceList {
+    overflow-y: auto;
+    margin: 0 auto;
+    padding: 0;
+    background-color: var(--secondary-background-color);
+    border-radius: 8px;
+  }
+  
