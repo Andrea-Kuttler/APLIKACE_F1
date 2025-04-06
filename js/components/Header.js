@@ -7,7 +7,7 @@ function Header({ onLoadRaces, onLoadDrivers }) {
     <div className="container">
       <div className="aplikace">
         <h1>F1 Závody 2024</h1>
-        <Buttons onLoadRaces={onLoadRaces} onLoadDrivers={onLoadDrivers} /> {/* Použijeme komponentu Buttons */}
+        <Buttons onLoadRaces={onLoadRaces} onLoadDrivers={onLoadDrivers} />
       </div>
     </div>
   );

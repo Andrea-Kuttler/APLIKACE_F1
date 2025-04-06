@@ -7,23 +7,23 @@
   
   @font-face {
     font-family: 'Formula1-Bold';
-    src: url('../js/assets.js/fonts/Formula1-Bold.otf') format('truetype');
+    src: url('../js/assets/fonts/Formula1-Bold.otf') format('truetype');
   }
   
   body {
     font-family: 'Formula1-Bold', sans-serif;
     color: black;
-    background-image: url('../js/assets.js/img/f1.webp');
+    background-image: url('../js/assets/img/f1.webp');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     margin: 0;
     padding: 0;
+    transition: background-size 0.5s ease-in-out;
 
-    @media (max-width: 768px) {
-      background-size: 100% 100%;
-  }
+    max-width: 100%;
+    width: 100%;
 }
   
   .container {
@@ -33,13 +33,27 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     color: black;
+
+    max-width: 100%; /* zajistí, že maximální šířka kontejneru nebude překročena */
   
     @media (min-width: 768px) {
-      width: 80%;
-      margin: 20px auto;
-      padding: 20px;
+        width: 80%;
+        margin: 20px auto;
+        padding: 20px;
     }
-  }
+}
+
+@media (max-width: 768px) {
+    body {
+        background-size: 100% 100%; /* Na menších obrazovkách obrázek pokrývá celou plochu */
+    }
+}
+
+@media (min-width: 768px) {
+    body {
+        background-size: cover; /* Na větších obrazovkách obrázek bude pokrývat celou plochu */
+    }
+}
   
   h1 {
     text-align: center;
