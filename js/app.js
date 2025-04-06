@@ -1,56 +1,70 @@
-import React from 'react';
-import '../style.css';
+import React, { useState } from 'react';
+import { createRoot } from "react-dom/client";
+import '../css/style.css';  // Importujeme CSS soubor
 
+import Header from "./components/Header";  // Importujeme komponentu Header
+import Main from "./components/Main";  // Importujeme komponentu Main
 
+const App = () => {
+    const [races, setRaces] = useState([]);  // Stav pro závody
+    const [drivers, setDrivers] = useState([]);  // Stav pro jezdce
+    const [isRacesVisible, setIsRacesVisible] = useState(true);  // Stav pro zobrazení závodů/jezdců
 
-document.getElementById('fetchDataSeason').addEventListener('click', () => {
-    const apiUrl = 'https://ergast.com/api/f1/2024.json';
-    
-    fetch(apiUrl)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Chyba při získávání dat');
-            }
-            return response.json();
-        })
-        .then(data => {
-            const races = data.MRData.RaceTable.Races;
-            const raceList = document.getElementById('raceList');
-            raceList.innerHTML = ''; // Vyčištění seznamu
+    // Funkce pro načtení závodů
+    const fetchRaces = () => {
+        const apiUrl = 'https://ergast.com/api/f1/2024.json';
 
-            races.forEach(race => {
-                const listItem = document.createElement('li');
-                listItem.textContent = `${race.round}: ${race.raceName} (${race.date}) - ${race.Circuit.circuitName}`;
-                raceList.appendChild(listItem);
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Chyba při získávání dat');
+                }
+                return response.json();
+            })
+            .then(data => {
+                setRaces(data.MRData.RaceTable.Races);  // Nastavíme data o závodech
+                setIsRacesVisible(true);  // Zobrazíme závody
+            })
+            .catch(error => {
+                console.error('Chyba:', error);
             });
-        })
-        .catch(error => {
-            console.error('Chyba:', error);
-        });
-});
+    };
 
-document.getElementById('fetchDataDrivers').addEventListener('click', () => {
-    const apiUrl = 'https://ergast.com/api/f1/2024/drivers.json';
-    
-    fetch(apiUrl)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Chyba při získávání dat');
-            }
-            return response.json();
-        })
-        .then(data => {
-            const drivers = data.MRData.DriverTable.Drivers;
-            const driverList = document.getElementById('raceList'); // Můžeš přejmenovat na driverList pokud chceš
-            driverList.innerHTML = ''; // Vyčištění seznamu
+    // Funkce pro načtení jezdců
+    const fetchDrivers = () => {
+        const apiUrl = 'https://ergast.com/api/f1/2024/drivers.json';
 
-            drivers.forEach(driver => {
-                const listItem = document.createElement('li');
-                listItem.textContent = `${driver.givenName} ${driver.familyName} (${driver.nationality}) - ${driver.permanentNumber ?? 'bez čísla'}`;
-                driverList.appendChild(listItem);
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Chyba při získávání dat');
+                }
+                return response.json();
+            })
+            .then(data => {
+                setDrivers(data.MRData.DriverTable.Drivers);  // Nastavíme data o jezdcích
+                setIsRacesVisible(false);  // Zobrazíme jezdce
+            })
+            .catch(error => {
+                console.error('Chyba:', error);
             });
-        })
-        .catch(error => {
-            console.error('Chyba:', error);
-        });
-});
+    };
+
+    return (
+        <>
+            <Header
+                onLoadRaces={fetchRaces}
+                onLoadDrivers={fetchDrivers}
+            />
+           <Main 
+                isRacesVisible={isRacesVisible}
+                races={races}
+                drivers={drivers}
+            />
+        </>
+    );
+};
+
+const container = document.getElementById("app");
+const root = createRoot(container);
+root.render(<App />);
