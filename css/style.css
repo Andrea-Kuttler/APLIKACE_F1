@@ -94,6 +94,14 @@
       color: var(--primary-color);
     }
   }
+
+  .year-dropdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 10px;
+  }
   
   ul {
     list-style: none;

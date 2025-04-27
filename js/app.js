@@ -10,9 +10,9 @@ const App = () => {
     const [drivers, setDrivers] = useState([]);  // Stav pro jezdce
     const [isRacesVisible, setIsRacesVisible] = useState(true);  // Stav pro zobrazení závodů/jezdců
 
-    // Funkce pro načtení závodů
-    const fetchRaces = () => {
-        const apiUrl = 'https://ergast.com/api/f1/2024.json';
+    // Funkce pro načtení závodů podle roku
+    const fetchRaces = (year) => {
+        const apiUrl = `https://ergast.com/api/f1/${year}.json`;
 
         fetch(apiUrl)
             .then(response => {
@@ -30,9 +30,9 @@ const App = () => {
             });
     };
 
-    // Funkce pro načtení jezdců
-    const fetchDrivers = () => {
-        const apiUrl = 'https://ergast.com/api/f1/2024/drivers.json';
+    // Funkce pro načtení jezdců podle roku
+    const fetchDrivers = (year) => {
+        const apiUrl = `https://ergast.com/api/f1/${year}/drivers.json`;
 
         fetch(apiUrl)
             .then(response => {
@@ -56,7 +56,7 @@ const App = () => {
                 onLoadRaces={fetchRaces}
                 onLoadDrivers={fetchDrivers}
             />
-           <Main 
+            <Main 
                 isRacesVisible={isRacesVisible}
                 races={races}
                 drivers={drivers}
