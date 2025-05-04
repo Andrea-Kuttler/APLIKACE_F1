@@ -58,7 +58,7 @@
   h1 {
     text-align: center;
     color: var(--secondary-color);
-    font-size: 2em;
+    font-size: 3em;
     margin-bottom: 15px;
   
     @media (min-width: 768px) {
@@ -85,9 +85,11 @@
     padding: 10px 20px;
     background-color: var(--primary-color);
     color: var(--secondary-color);
-    border: none;
+    border: solid;
     border-radius: 5px;
     cursor: pointer;
+    font-family: "Formula1-Bold", sans-serif;
+    font-size: 1.2em;
   
     &:hover {
       background-color: var(--secondary-color);
@@ -101,7 +103,42 @@
     align-items: center;
     margin-bottom: 20px;
     gap: 10px;
+    position: relative;
   }
+
+  .form-select {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: solid 2px var(--secondary-color);
+    border-radius: 5px;
+    font-family: "Formula1-Bold", sans-serif;
+    font-size: 1.2em;
+    padding: 0.5em;
+  }
+
+.tooltip {
+  visibility: hidden;
+  width: 25em;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  text-align: center;
+  border-radius: 6px;
+  border: solid 2px var(--secondary-color);
+  padding: 6px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size:smaller;
+}
+
+.year-dropdown:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
   
   ul {
     list-style: none;

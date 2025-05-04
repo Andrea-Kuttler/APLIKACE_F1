@@ -15,6 +15,7 @@ const Dropdown = ({ onYearChange, defaultYear = 2024 }) => {
   return (
     <div className="year-dropdown">
       <select
+        className="form-select"
         value={selectedYear}
         onChange={handleChange}
       >
@@ -24,6 +25,7 @@ const Dropdown = ({ onYearChange, defaultYear = 2024 }) => {
           </option>
         ))}
       </select>
+      <span className="tooltip">Po výběru roku vyber Načíst závody nebo Načíst jezdce</span>
     </div>
   );
 };
